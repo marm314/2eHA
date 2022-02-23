@@ -1,0 +1,153 @@
+#include"Input_commands.h"
+
+   ///////////////////////////
+   //Declare Class Functions//
+   ///////////////////////////
+
+/////////////////////////////////////////
+/////////////////////////////////////////
+// Creation and anihilation of objects //
+// ----------------------------------- //
+/////////////////////////////////////////
+/////////////////////////////////////////
+
+Input_commands::Input_commands(){cout<<"Not allowed default constructor"<<endl;}
+//Real constructor
+Input_commands::Input_commands(string name)
+{
+ string aux;
+ order_ang=0;order_rad=200;n=2;l=0;m=0;nx=0;ny=0;nz=0;
+ intracule=false;extracule=false;wave_function=false;density=false;scan_density=false;
+ dm1=false;dm2=false;dmn=false;DI_an=false;radial_grid=false;DI_fchk_wfn=false;scan_intracule=false;
+ apx_wfn=false;integrate_density=false;cnormdi=false;
+ ifstream infile;
+ name.erase(std::remove_if(name.begin(),name.end(),::isspace),name.end());
+ infile.open((name).c_str());
+ if(infile.good())
+ {
+  while(getline(infile,aux))
+  {
+   aux.erase(std::remove_if(aux.begin(),aux.end(),::isspace),aux.end());
+   lowercase(aux);
+   if(aux=="$polynomial")
+   {
+    infile>>n;
+   }
+   if(aux=="$quantum_numbers")
+   {
+    infile>>l>>m>>nx>>ny>>nz;
+   }
+   if(aux=="$order_rad")
+   {
+    radial_grid=true;
+    infile>>order_rad;
+   }
+   if(aux=="$order_ang")
+   {
+    infile>>order_ang;
+   }
+   if(aux=="$intracule")
+   {
+    intracule=true;
+    infile>>r_intra[0]>>r_intra[1]>>r_intra[2];
+   }
+   if(aux=="$scan_intracule")
+   {
+    scan_intracule=true;
+    infile>>last_intra>>step_intra>>axis_intra;
+   }
+   if(aux=="$extracule")
+   {
+    extracule=true;
+    infile>>r_extra[0]>>r_extra[1]>>r_extra[2];
+   }
+   if(aux=="$wave_function")
+   {
+    wave_function=true;
+    infile>>r1_wf[0]>>r1_wf[1]>>r1_wf[2];
+    infile>>r2_wf[0]>>r2_wf[1]>>r2_wf[2];
+   }
+   if(aux=="$density")
+   {
+    density=true;
+    infile>>r_dens[0]>>r_dens[1]>>r_dens[2];
+   }
+   if(aux=="$scan_density")
+   {
+    scan_density=true;
+    infile>>axis;
+    infile>>step>>last;
+   }
+   if(aux=="$integrate_density")
+   {integrate_density=true;}
+   if(aux=="$dm1")
+   {
+    dmn=true;
+    dm1=true;
+    infile>>r1_dm1[0]>>r1_dm1[1]>>r1_dm1[2];
+    infile>>r1_prime_dm1[0]>>r1_prime_dm1[1]>>r1_prime_dm1[2];
+   }
+   if(aux=="$dm2")
+   {
+    dmn=true;
+    dm2=true;
+    infile>>r1_dm2[0]>>r1_dm2[1]>>r1_dm2[2];
+    infile>>r1_prime_dm2[0]>>r1_prime_dm2[1]>>r1_prime_dm2[2];
+    infile>>r2_dm2[0]>>r2_dm2[1]>>r2_dm2[2];
+    infile>>r2_prime_dm2[0]>>r2_prime_dm2[1]>>r2_prime_dm2[2];
+   }
+   if(aux=="$di_an")
+   {
+    DI_an=true;
+    infile>>r1_min_an>>r1_max_an>>theta1_min_an>>theta1_max_an>>phi1_min_an>>phi1_max_an;
+    infile>>r2_min_an>>r2_max_an>>theta2_min_an>>theta2_max_an>>phi2_min_an>>phi2_max_an;
+   }
+   if(aux=="$di_fchk_wfn")
+   {
+    log_file=false;
+    WFN=false;
+    cas=true;
+    DI_fchk_wfn=true;
+    infile>>r1_min>>r1_max>>theta1_min>>theta1_max>>phi1_min>>phi1_max;
+    infile>>r2_min>>r2_max>>theta2_min>>theta2_max>>phi2_min>>phi2_max;
+    do
+    {
+     getline(infile,name_fchk_wfn);
+     name_fchk_wfn.erase(std::remove_if(name_fchk_wfn.begin(),name_fchk_wfn.end(),::isspace),name_fchk_wfn.end());
+    }while(name_fchk_wfn=="");
+    do
+    {
+     getline(infile,name_log);
+     name_log.erase(std::remove_if(name_log.begin(),name_log.end(),::isspace),name_log.end());
+    }while(name_log=="");
+    if(name_log!="NOLOG"){log_file=true;}
+    if(name_fchk_wfn[name_fchk_wfn.length()-1]=='n' || name_fchk_wfn[name_fchk_wfn.length()-1]=='N')
+    {WFN=true;}
+    do
+    {
+     getline(infile,aux);
+     aux.erase(std::remove_if(aux.begin(),aux.end(),::isspace),aux.end());
+     lowercase(aux);
+    }while(aux=="");
+    if(aux!="cas"){cas=false;}
+    infile>>mult_in;
+   }
+   if(aux=="$apx_wfn")
+   {
+    apx_wfn=true;
+    infile>>nterms_3dho;
+   }
+   if(aux=="$cnormdi")
+   {
+    cnormdi=true;
+   }
+   if(aux=="$ncores")
+   {
+    infile>>ncores;
+   }
+  }
+  if(!radial_grid)
+  {cout<<"Radial grid was not specified. Set to 200 by default!"<<endl;}
+  infile.close();
+ }
+}

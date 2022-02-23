@@ -1,0 +1,17 @@
+$Polynomial        
+2                  
+$Quantum_numbers   
+0 0                
+0 0 0             
+$Order_rad        
+70                
+$Order_ang        
+200                
+$Scan_density      
+z                  
+0.1 10             
+$Integrate_density
+$apx_wfn
+2 
+$ncores
+10

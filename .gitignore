@@ -1,0 +1,9 @@
+D_read_calc_rho.o
+HA_sol_n.o
+Input_commands.o
+legendre_quadrature.o
+main.o
+Mathematical_Functions.o
+sphere_lebedev_rule.o
+String_ops.o
+2eHA_EXE

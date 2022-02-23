@@ -1,0 +1,54 @@
+Input description:
+
+$Polynomial        -> Mandatory 
+n                  -> Degree of the intracule polynomial (see Taut 1993 for more details)
+$Quantum_numbers   -> Mandatory
+l m                -> Quantun numbers for Y_lm(r) [Spherical Harmonic of the intracule, odd 'l' -> triplet and even 'l' -> singlet]
+nx ny nz           -> Quantun numbers for the 3D-Harmonic Oscillator (Center of Mass wave function) 
+$Order_rad         -> Mandatory if it is not specified, it will be set to 200 
+order_rad          -> Number of terms for the Legendre Radial Quadrature 
+$Order_ang         -> Not mandatory unless you ask for (Rho(r), Scan of Rho(r) or DM1(r1,r1')) 
+order_ang          -> Number of terms for the Lebedev Angular Quadrature
+$Intracule         -> Use it to evaluate the intracule density at some point
+x_intra y_intra z_intra -> Three numbers  (e.g 0 0 0.1 means r12=(0,0,0.1))
+$Scan_Intracule
+Last               -> Last Point for the radial scan 
+step               -> Step size to use 
+x, y or z          -> Direction to use
+$Extracule         -> Use it to evaluate the extracule density at some point
+x_extra y_extra z_extra -> Three numbers
+$Wave_function     -> Use it to evaluate the wave function Psi(1,2) at some points
+x1_wf y1_wf z1_wf  -> Three numbers
+x2_wf y2_wf z2_wf  -> Three numbers
+$Density           -> Use it to evaluate the density Rho(r) at some point
+x_dens y_dens z_dens
+$Scan_density      -> Use it to evaluate the density Rho(r) at some points
+axis               -> Axis (x, y or z)  
+step last          -> Step size to use and the last point (e.g. 0.01 10)
+$Integrate_density -> Shall give 2 (Number of electrons) 
+$Dm1               -> Use it to evaluate the DM1(r,r') at some points
+x1_dm1 y1_dm1 z1_dm1                    -> Three numbers
+x1_prime_dm1 y1_prime_dm1 z1_prime_dm1  -> Three numbers (recall that r=r' is equal to Rho(r))
+$Dm2               -> Use it to evaluate the DM2(r1,r2,r1',r2') at some points
+x1_dm2 y1_dm2 z1_dm2                    -> Three numbers  
+x1_prime_dm2 y1_prime_dm2 z1_prime_dm2  -> Three numbers
+x2_dm2 y2_dm2 z2_dm2                    -> Three numbers 
+x2_prime_dm2 y2_prime_dm2 z2_prime_dm2  -> Three numbers
+$Di_an                -> Use it to calculate the analytic DI (ESI) for the analytic solution using some partition. 
+r1_min r1_max         -> Radial component for electron 1    (e.g 0 1e99)     
+theta1_min theta1_max -> Polar component for electron 1     (e.g 0 180)
+phi1_min phi1_max     -> Azimuthal component for electron 1 (e.g -180 0)  In this case we use the Azimuthal angle for the 
+r2_min r2_max         -> Radial component for electron 2    (e.g 0 1e99)  partition
+theta2_min theta2_max -> Polar component for electron 2     (e.g 0 180)
+phi2_min phi2_max     -> Azimuthal component for electron 1 (e.g 0 180)
+$Di_fchk_wfn          -> Use it to calculate the DI (ESI) using a pair function from an analytic solution and using some partition. 
+r1_min r1_max         -> Radial component for electron 1    (e.g 0 1e99)     
+theta1_min theta1_max -> Polar component for electron 1     (e.g 0 180)
+phi1_min phi1_max     -> Azimuthal component for electron 1 (e.g -180 0)  In this case we use the Azimuthal angle for the 
+r2_min r2_max         -> Radial component for electron 2    (e.g 0 1e99)  partition
+theta2_min theta2_max -> Polar component for electron 2     (e.g 0 180)
+phi2_min phi2_max     -> Azimuthal component for electron 1 (e.g 0 180)
+name_fchk_wfn         -> Name of the FCHK or WFN file
+name_log              -> Name of the log file needed by READ_FCHK_WFN object (write: NOLOG)
+cas or nocas          -> Indicate if it is a CAS calculation
+multiplicity          -> Include the multiplicity (needed for READ_FCHK_WFN object)
