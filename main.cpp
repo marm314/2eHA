@@ -415,7 +415,7 @@ int main(int argc, char *argv[])
    results<<endl;
    results<<"##########################################################################"<<endl;
    results<<endl;
-   for(i=0;i<IN.nterms_3dho;i++)
+   for(i=0;i<=IN.nterms_3dho;i++)
    {
     terms=((i+1)*(i+2))/2;
     n_xyz=new int*[terms];
@@ -429,7 +429,7 @@ int main(int argc, char *argv[])
      quant_3dho2[0]=n_xyz[j][0];
      quant_3dho2[1]=n_xyz[j][1];
      quant_3dho2[2]=n_xyz[j][2];
-     for(k=0;k<IN.nterms_3dho;k++)
+     for(k=0;k<=IN.nterms_3dho;k++)
      {
       terms2=((k+1)*(k+2))/2;
       n_xyz2=new int*[terms2];

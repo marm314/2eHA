@@ -12,6 +12,6 @@ z
 0.1 10             
 $Integrate_density
 $apx_wfn
-2 
+1 
 $ncores
 10

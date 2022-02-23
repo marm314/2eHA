@@ -34,6 +34,10 @@ x1_dm2 y1_dm2 z1_dm2                    -> Three numbers
 x1_prime_dm2 y1_prime_dm2 z1_prime_dm2  -> Three numbers
 x2_dm2 y2_dm2 z2_dm2                    -> Three numbers 
 x2_prime_dm2 y2_prime_dm2 z2_prime_dm2  -> Three numbers
+$apx_wfn           -> Expand the PSI(r1,r2) HA sol. in 3D Harm. Osc. basis
+2                  -> Integer maximum quantum number to use in 3D Harm. Osc. basis
+$ncores            -> Number of core to use in cuba
+10                 -> Integer number of cores 
 $Di_an                -> Use it to calculate the analytic DI (ESI) for the analytic solution using some partition. 
 r1_min r1_max         -> Radial component for electron 1    (e.g 0 1e99)     
 theta1_min theta1_max -> Polar component for electron 1     (e.g 0 180)
