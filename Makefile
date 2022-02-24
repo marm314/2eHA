@@ -3,7 +3,7 @@
 #CPP = icc
 #CPPFLAGS = -Wall 
 CPP = g++
-CPPFLAGS = -Wall
+CPPFLAGS = -Wall -O2
 Cln = /bin/rm -rf
 NAME=2eHA
 ###########################################
